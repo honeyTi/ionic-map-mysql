@@ -45,3 +45,23 @@ CREATE TABLE `publish_tb` (
     `publish_date` DATE,
     PRIMARY KEY ( `publish_id`)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- 发布房源信息表
+
+CREATE TABLE `house_info_tb` (
+    `houseinfo_id` INT UNSIGNED AUTO_INCREMENT DEFAULT 10000,
+    `houseinfo_name` VARCHAR(100) NOT NULL,
+    `houseinfo_company` VARCHAR(100) NOT NULL,
+    `houseinfo_floor` VARCHAR(16) NOT NULL,
+    `houseinfo_floor_info` VARCHAR(200) NOT NULL,
+    `houseinfo_car_stop` VARCHAR(200) NOT NULL,
+    `houseinfo_dt` VARCHAR(200) NOT NULL,
+    `houseinfo_kt` VARCHAR(200) NOT NULL,
+    `houseinfo_all_company` VARCHAR(300) NOT NULL,
+    `houseinfo_subway` VARCHAR (300) NOT NULL,
+    `houseinfo_lon` VARCHAR(16) NOT NULL,
+    `houseinfo_lat` VARCHAR(16) NOT NULL,
+    `houseinfo_code` VARCHAR(16) NOT NULL,
+    `houseinfo_date` DATE,
+    PRIMARY KEY ( `houseinfo_id`)
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;

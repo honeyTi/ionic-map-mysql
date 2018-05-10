@@ -76,7 +76,7 @@ router.get('/register', function (req, res, next) {
   let data = [];
   var p = new Promise((resolve, reject) => {
     data = [];
-    let selectSql = 'select * from user_tb where user_tel = ' + req.query.tel;
+    let selectSql = 'select * from user_tb where user_tel = "' + req.query.tel + '"';
     data = queryData(selectSql, res, resolve);
   });
 
