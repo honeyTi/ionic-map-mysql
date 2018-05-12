@@ -119,6 +119,15 @@ router.get('/publishInfo', function(req, res, next) {
   selectData(select, res);
 })
 
+router.get('/city', function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header('Access-Control-Allow-Methods', 'PUT, GET, POST, DELETE, OPTIONS');
+  res.header("Access-Control-Allow-Headers", "X-Requested-With");
+  res.header('Access-Control-Allow-Headers', 'Content-Type');
+  let select = 'select * from city_tb';
+  selectData(select, res);
+})
+
 
 
 module.exports = router;
