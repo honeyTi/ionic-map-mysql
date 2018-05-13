@@ -69,6 +69,7 @@ CREATE TABLE `house_info_tb` (
     PRIMARY KEY ( `houseinfo_id`)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+<<<<<<< HEAD
 -- 房源信息
 CREATE TABLE `house_publish_tb` (
     `house_id` INT UNSIGNED AUTO_INCREMENT,
@@ -89,3 +90,32 @@ CREATE TABLE `house_publish_tb` (
     `houseinfo_date` DATE,
     PRIMARY KEY ( `house_id`)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
+=======
+-- 打点城市列表
+
+CREATE TABLE `city_tb` (
+  `belong_city` varchar(20) NOT NULL,
+  `city_name` varchar(20) NOT NULL,
+  `city_lat` decimal(10,6) NOT NULL,
+  `city_lng` decimal(10,6) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- 插入城市
+
+INSERT INTO `city_tb` 
+    (belong_city, city_name, city_lat, city_lng) 
+    VALUES 
+    ('长沙','芙蓉区', '28.203811', '113.020969'),
+    ('长沙','天心区', '28.144471', '112.996195'),
+    ('长沙','岳麓区', '28.202707', '112.908699'),
+    ('长沙','开福区', '28.260219', '113.024730'),
+    ('长沙','雨花区', '28.146444', '113.020201'),
+    ('长沙','望城区', '28.277902', '112.848535'),
+    ('长沙','长沙县', '28.322759', '113.224946'),
+    ('长沙','宁乡县', '28.131213', '112.360465'),
+    ('长沙','星沙', '28.243270', '113.086835'),
+    ('永州','零陵', '26.331871', '111.582947'),
+    ('永州','冷水滩', '26.493915', '111.607668'),
+    ('永州','祁阳县', '26.517194', '111.758296'),
+    ('永州','东安县', '26.444757', '111.511082'),
+>>>>>>> 64f614ff2ce6995b54b904bae688fc36d63af15b
