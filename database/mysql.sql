@@ -49,7 +49,7 @@ CREATE TABLE `publish_tb` (
 -- 发布房源信息表
 
 CREATE TABLE `house_info_tb` (
-    `houseinfo_id` INT UNSIGNED AUTO_INCREMENT DEFAULT 10000,
+    `houseinfo_id` INT UNSIGNED AUTO_INCREMENT,
     `houseinfo_name` VARCHAR(100) NOT NULL,
     `houseinfo_company` VARCHAR(100) NOT NULL,
     `houseinfo_floor` VARCHAR(16) NOT NULL,
@@ -59,9 +59,33 @@ CREATE TABLE `house_info_tb` (
     `houseinfo_kt` VARCHAR(200) NOT NULL,
     `houseinfo_all_company` VARCHAR(300) NOT NULL,
     `houseinfo_subway` VARCHAR (300) NOT NULL,
+    `houseinfo_area` VARCHAR(16) NOT NULL,
+    `houseinfo_area_detail` VARCHAR(16) NOT NULL,
     `houseinfo_lon` VARCHAR(16) NOT NULL,
     `houseinfo_lat` VARCHAR(16) NOT NULL,
     `houseinfo_code` VARCHAR(16) NOT NULL,
+    `houseinfo_publish_user` VARCHAR(16) NOT NULL,
     `houseinfo_date` DATE,
     PRIMARY KEY ( `houseinfo_id`)
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- 房源信息
+CREATE TABLE `house_publish_tb` (
+    `house_id` INT UNSIGNED AUTO_INCREMENT,
+    `house_property` VARCHAR(100) NOT NULL,
+    `house_mkarea` VARCHAR(100) NOT NULL,
+    `house_price` VARCHAR(16) NOT NULL,
+    `house_handle` VARCHAR(200) NOT NULL,
+    `house_handle_date` VARCHAR(200) NOT NULL,
+    `house_short_date` VARCHAR(200) NOT NULL,
+    `house_pay_type` VARCHAR(200) NOT NULL,
+    `house_jy` VARCHAR(300) NOT NULL,
+    `house_zxmz` VARCHAR (300) NOT NULL,
+    `house_look_time_start` VARCHAR(16) NOT NULL,
+    `house_look_time_end` VARCHAR(16) NOT NULL,
+    `house_disc_content` VARCHAR(200) NOT NULL,
+    `house_publish_user` VARCHAR(32) NOT NULL,
+    `house_floor_own` VARCHAR(100) NOT NULL,
+    `houseinfo_date` DATE,
+    PRIMARY KEY ( `house_id`)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
