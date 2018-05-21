@@ -69,7 +69,6 @@ CREATE TABLE `house_info_tb` (
     PRIMARY KEY ( `houseinfo_id`)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-<<<<<<< HEAD
 -- 房源信息
 CREATE TABLE `house_publish_tb` (
     `house_id` INT UNSIGNED AUTO_INCREMENT,
@@ -90,7 +89,6 @@ CREATE TABLE `house_publish_tb` (
     `houseinfo_date` DATE,
     PRIMARY KEY ( `house_id`)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
-=======
 -- 打点城市列表
 
 CREATE TABLE `city_tb` (
@@ -118,4 +116,3 @@ INSERT INTO `city_tb`
     ('永州','冷水滩', '26.493915', '111.607668'),
     ('永州','祁阳县', '26.517194', '111.758296'),
     ('永州','东安县', '26.444757', '111.511082'),
->>>>>>> 64f614ff2ce6995b54b904bae688fc36d63af15b

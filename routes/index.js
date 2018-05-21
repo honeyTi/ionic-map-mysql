@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 const db = require('../database/mysql');
 
+
 let insertData = (sql, res) => {
   db.pool.getConnection(function (err, connection) {
     if (err) {
@@ -66,13 +67,16 @@ let selectData = (sql, res) => {
     });
   });
 }
-
-router.get('/register', function (req, res, next) {
+router.all('*',function (req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
   res.header('Access-Control-Allow-Methods', 'PUT, GET, POST, DELETE, OPTIONS');
   res.header("Access-Control-Allow-Headers", "X-Requested-With");
   res.header('Access-Control-Allow-Headers', 'Content-Type');
-  
+  // res.header('Cache-Control','no-cache');
+})
+
+router.get('/register', function (req, res, next) {
+  console.log('123123213123');
   let data = [];
   var p = new Promise((resolve, reject) => {
     data = [];
@@ -92,57 +96,32 @@ router.get('/register', function (req, res, next) {
 });
 
 router.get('/login', function(req, res, next) {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header('Access-Control-Allow-Methods', 'PUT, GET, POST, DELETE, OPTIONS');
-  res.header("Access-Control-Allow-Headers", "X-Requested-With");
-  res.header('Access-Control-Allow-Headers', 'Content-Type');
   let select = 'select * from user_tb where user_tel = "' + req.query.tel + '" and user_psd = "' + req.query.psd + '"';
   selectData(select, res);
 })
 
 router.get('/publish', function(req, res, next) {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header('Access-Control-Allow-Methods', 'PUT, GET, POST, DELETE, OPTIONS');
-  res.header("Access-Control-Allow-Headers", "X-Requested-With");
-  res.header('Access-Control-Allow-Headers', 'Content-Type');
   let select = 'INSERT INTO publish_tb (publish_name, publish_tel, publish_content, publish_user_name, publish_code, publish_date)' +
         'VALUES ("'+req.query.sendUser+'","'+req.query.sendMoble+'","'+req.query.sendContent+'","'+ req.query.userName +'","否",NOW())';
   insertData(select, res);
 })
 
 router.get('/publishInfo', function(req, res, next) {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header('Access-Control-Allow-Methods', 'PUT, GET, POST, DELETE, OPTIONS');
-  res.header("Access-Control-Allow-Headers", "X-Requested-With");
-  res.header('Access-Control-Allow-Headers', 'Content-Type');
   let select = 'select * from publish_tb where publish_user_name = "' + req.query.userName +'"';
   selectData(select, res);
 })
 // 查全部楼盘
 router.get('/allhoseinfo', function(req, res, next) {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header('Access-Control-Allow-Methods', 'PUT, GET, POST, DELETE, OPTIONS');
-  res.header("Access-Control-Allow-Headers", "X-Requested-With");
-  res.header('Access-Control-Allow-Headers', 'Content-Type');
-  res.header('Cache-Control','no-cache');
   let select = 'select * from house_info_tb';
   selectData(select, res);
 });
 // 查看指定楼盘信息
 router.get('/houseInfoSelect', function(req, res, next) {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header('Access-Control-Allow-Methods', 'PUT, GET, POST, DELETE, OPTIONS');
-  res.header("Access-Control-Allow-Headers", "X-Requested-With");
-  res.header('Access-Control-Allow-Headers', 'Content-Type');
   let select = 'select * from house_info_tb where houseinfo_name = "' + req.query.houseInfo + '"';
   selectData(select, res);
 })
 
 router.get('/publishHouse', function (req, res, next) {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header('Access-Control-Allow-Methods', 'PUT, GET, POST, DELETE, OPTIONS');
-  res.header("Access-Control-Allow-Headers", "X-Requested-With");
-  res.header('Access-Control-Allow-Headers', 'Content-Type');
   let select = 'INSERT INTO house_publish_tb (house_property,house_mkarea,house_price,house_handle,house_handle_date,house_short_date,'+
     'house_pay_type,house_jy,house_zxmz,house_look_time_start,house_look_time_end,house_disc_content,house_publish_user,'+
     'house_floor_own,houseinfo_date)' +
@@ -167,10 +146,6 @@ router.get('/publishHouse', function (req, res, next) {
 });
 
 router.get('/publishBuild', function (req, res, next) {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header('Access-Control-Allow-Methods', 'PUT, GET, POST, DELETE, OPTIONS');
-  res.header("Access-Control-Allow-Headers", "X-Requested-With");
-  res.header('Access-Control-Allow-Headers', 'Content-Type');
   let select = 'INSERT INTO house_info_tb (houseinfo_name,houseinfo_company,houseinfo_floor,houseinfo_floor_info,houseinfo_car_stop,houseinfo_dt,'+
     'houseinfo_kt,houseinfo_all_company,houseinfo_subway,houseinfo_area,houseinfo_area_detail,houseinfo_lon,houseinfo_lat,'+
     'houseinfo_publish_user,houseinfo_code,houseinfo_date)' +
@@ -196,11 +171,12 @@ router.get('/publishBuild', function (req, res, next) {
 });
 
 router.get('/selectHouseInfo', function(req, res, next) {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header('Access-Control-Allow-Methods', 'PUT, GET, POST, DELETE, OPTIONS');
-  res.header("Access-Control-Allow-Headers", "X-Requested-With");
-  res.header('Access-Control-Allow-Headers', 'Content-Type');
   let select = 'select * from house_publish_tb where house_publish_user = "' + req.query.house_publish_user + '"';
+  selectData(select, res);
+});
+
+router.get('/publishNoAccept', function(req, res, next) {
+  let select = 'select * from publish_tb where publish_code = "' + req.query.publish_code + '"';
   selectData(select, res);
 })
 
