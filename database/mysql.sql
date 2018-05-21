@@ -42,6 +42,7 @@ CREATE TABLE `publish_tb` (
     `publish_content` VARCHAR(256) NOT NULL,
     `publish_code` VARCHAR(16) NOT NULL,
     `publish_user_name` VARCHAR(16) NOT NULL,
+    `publish_get_username` VARCHAR(16) NOT NULL,
     `publish_date` DATE,
     PRIMARY KEY ( `publish_id`)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;

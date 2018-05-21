@@ -72,7 +72,8 @@ router.all('*',function (req, res, next) {
   res.header('Access-Control-Allow-Methods', 'PUT, GET, POST, DELETE, OPTIONS');
   res.header("Access-Control-Allow-Headers", "X-Requested-With");
   res.header('Access-Control-Allow-Headers', 'Content-Type');
-  // res.header('Cache-Control','no-cache');
+  res.header('Cache-Control','no-cache');
+  next();
 })
 
 router.get('/register', function (req, res, next) {
@@ -101,8 +102,8 @@ router.get('/login', function(req, res, next) {
 })
 
 router.get('/publish', function(req, res, next) {
-  let select = 'INSERT INTO publish_tb (publish_name, publish_tel, publish_content, publish_user_name, publish_code, publish_date)' +
-        'VALUES ("'+req.query.sendUser+'","'+req.query.sendMoble+'","'+req.query.sendContent+'","'+ req.query.userName +'","否",NOW())';
+  let select = 'INSERT INTO publish_tb (publish_name, publish_tel, publish_content, publish_user_name, publish_code, publish_date,publish_get_username)' +
+        'VALUES ("'+req.query.sendUser+'","'+req.query.sendMoble+'","'+req.query.sendContent+'","'+ req.query.userName +'","否",NOW(),"")';
   insertData(select, res);
 })
 
@@ -177,6 +178,11 @@ router.get('/selectHouseInfo', function(req, res, next) {
 
 router.get('/publishNoAccept', function(req, res, next) {
   let select = 'select * from publish_tb where publish_code = "' + req.query.publish_code + '"';
+  selectData(select, res);
+})
+
+router.get('/updateInfo', function(req, res, next) {
+  let select = 'update publish_tb set publish_code = "是", publish_get_username = "'+ req.query.publish_get_username + '" where publish_id = ' + req.query.publish_id;
   selectData(select, res);
 })
 
